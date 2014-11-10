@@ -1,0 +1,19 @@
+<h1>Goals</h1>
+
+<%= link_to "Add Goal", new_goal_url %>
+<br></br>
+<table>
+	<th>Goal</th>
+	<th>User</th>
+<% @goals.each do |goal| %>
+	<% next if goal.private && goal.user_id != current_user.id %>
+	<tr>
+		<td><%= goal.title %></td>
+		<td><%= link_to goal.user.username, user_url(goal.user_id) %></td>
+		<% if goal.user_id == current_user.id %>
+		<td><%= button_to "Delete", goal_url(goal), method: :delete %></td>
+		<% end %>
+	</tr>
+<% end %>
+</table>
+

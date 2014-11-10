@@ -1,0 +1,26 @@
+<h1><%= @user.username %>'s Goals</h1>
+
+<%= link_to "Add Goal", new_goal_url %>
+
+<h2>Incomplete</h2>
+<table>
+	<% @goals.each do |goal| %>
+	  <% next if goal.complete %>
+	<tr>
+		<td><%= goal.title %></td>
+	  <td><%= button_to "Complete", goal_url(goal), method: :patch %> </td>
+  <tr>
+	<% end %>
+</table>
+
+<h2>Complete</h2>
+<table>
+	<% @goals.each do |goal| %>
+    <% next unless goal.complete %>
+	<tr>
+		<td><%= goal.title %></td>
+	  <td><%= button_to "Delete", goal_url(goal), method: :delete %> </td>
+  <tr>
+	<% end %>
+</table>
+

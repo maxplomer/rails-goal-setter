@@ -1,0 +1,30 @@
+<h1>New Goal</h1>
+
+
+<form action="/goals" method="post">
+	<%= form_auth %>
+	<label>
+	  Title
+	  <input type="text" name="goal[title]" value="<%= @goal.title %>">
+	</label>
+
+	<label>
+		Private
+	  <input type="radio"
+					 name="goal[private]"
+					 value="t"
+					 id="goal_private_t"
+					 <%= "checked" if @goal.private %>>
+	</label>
+	<label for="goal_private_t">Private</label>
+
+	  <input type="radio"
+					 name="goal[private]"
+					 value="f"
+					 id="goal_private_f"
+					 <%= "checked" unless @goal.private %>>
+		<label for="goal_private_f">Public</label>
+
+
+  <input type="submit" value="Add Goal">
+</form>
